@@ -628,41 +628,7 @@ python pipeline.py --demo
 python pipeline.py --repl
 ```
 
-Run the API:
 
-```bash
-python api.py
-```
-
-Run Chainlit:
-
-```bash
-chainlit run app.py
-```
-
-Run hybrid RAG:
-
-```bash
-python pipeline_with_rag_integration.py
-python example_rag_hybrid_usage.py
-```
-
-Train neural L3:
-
-```bash
-python train_truth_model.py
-```
-
-Train the L4 Russell base:
-
-```bash
-python train_l4_russell.py
-```
-
-Train the custom LM:
-
-```bash
-python run_pretrain.py
 ```
 
 ## Output Auditing
