@@ -1,271 +1,271 @@
-# Doninha IA - Middleware Neuro-Simbolico Hibrido
+# Doninha IA - Hybrid Neuro-Symbolic Middleware
 
-> Doninha IA transforma um LLM base em um middleware de raciocinio neuro-simbolico com camadas epistemologicas, logica paraconsistente, RAG hibrido, verificacao, auditoria e sintese final.
+> Doninha IA transforms a base LLM into a neuro-symbolic reasoning middleware with epistemological layers, paraconsistent logic, hybrid RAG, verification, auditing, and final synthesis.
 
-A IA Doninha e uma criacao de Daniel Barros Fonseca. O uso e permitido somente para usuarios privados. Para uso comercial ou governamental, contate o desenvolvedor pelo e-mail `danielfonseca420@proton.me` para informacoes sobre licenciamento de uso mediante pagamento de royalties.
+Doninha IA was created by Daniel Barros Fonseca. Use is permitted for private users only. For commercial or governmental use, contact the developer at `danielfonseca420@proton.me` for information on licensed use subject to royalty payments.
 
-## Visao Geral
+## Overview
 
-O Doninha nao e apenas um chamador de LLM. Ele e um middleware em camadas que recebe um prompt, transforma esse prompt em conceitos, proposicoes, pesos logicos e sinteses verificadas, e so entao entrega uma resposta textual.
+Doninha is not simply an LLM caller. It is a layered middleware that receives a prompt, transforms that prompt into concepts, propositions, logical weights, and verified syntheses, and only then delivers a textual response.
 
-O objetivo do projeto e combinar:
+The project's goal is to combine:
 
-- geracao estatistica de linguagem;
-- estrutura simbolica inspirada em Aristoteles, Kant, Russell, Popper, Hempel e logica paraconsistente;
-- recuperacao de contexto via KB local e RAG;
-- auditoria de confianca, contradicao, valor-verdade e fontes;
-- Chain of Thought auditavel por camada, exposto como resumo estruturado e nao como raciocinio interno bruto.
+- statistical language generation;
+- symbolic structure inspired by Aristotle, Kant, Russell, Popper, Hempel, and paraconsistent logic;
+- context retrieval via local KB and RAG;
+- auditing of confidence, contradiction, truth-value, and sources;
+- auditable Chain of Thought per layer, exposed as a structured summary rather than raw internal reasoning.
 
-## Fluxo Principal L1-L7
+## Main Flow L1–L7
 
 ```text
-Prompt do usuario
+User prompt
   |
   v
-L1 - Tabua de Conceitos
+L1 - Concept Table
   |
   v
-L2 - Juizos Kantianos e classificacao epistemica
+L2 - Kantian Judgments and epistemic classification
   |
   v
-Silogismo cientifico + Hempel + Popper
+Scientific syllogism + Hempel + Popper
   |
   v
-L3 - Logica Paraconsistente + Weighted Dynamic Ensemble
+L3 - Paraconsistent Logic + Weighted Dynamic Ensemble
   |
   v
-L4 - Sintese Russelliana + Chain of Verification
+L4 - Russellian Synthesis + Chain of Verification
   |
   v
-L5 - Geracao textual com provider base
+L5 - Text generation with base provider
   |
   v
-L6 - Refinamento final
+L6 - Final refinement
   |
   v
-L7 - Texto definitivo e auditavel
+L7 - Definitive and auditable text
 ```
 
-O ponto de entrada principal e [pipeline.py](pipeline.py), por meio da classe `HybridLLMPipeline`.
+The main entry point is [pipeline.py](pipeline.py), through the `HybridLLMPipeline` class.
 
-## Camadas do Middleware
+## Middleware Layers
 
-### L1 - Tabua de Conceitos
+### L1 - Concept Table
 
-Arquivo principal: [l1_concept_table.py](l1_concept_table.py)
+Main file: [l1_concept_table.py](l1_concept_table.py)
 
-Ferramentas principais:
+Main tools:
 
-- `ConceptNode`: estrutura de conceito com definicao, sinonimos, antonimos, hiponimos, hiperonimos, dominio, contexto aplicacional e fonte canonica.
-- `ConceptTable`: tabela semantica que extrai conceitos conhecidos do prompt.
-- `SpacySemanticTermExtractor`: extrator opcional baseado em spaCy para termos e sintagmas.
-- `LogicLMSymbolicSolver`: enriquecedor simbolico que avalia compatibilidade de contexto e gera alertas canonicos.
+- `ConceptNode`: concept structure with definition, synonyms, antonyms, hyponyms, hyperonyms, domain, application context, and canonical source.
+- `ConceptTable`: semantic table that extracts known concepts from the prompt.
+- `SpacySemanticTermExtractor`: optional spaCy-based extractor for terms and phrases.
+- `LogicLMSymbolicSolver`: symbolic enricher that evaluates context compatibility and generates canonical warnings.
 
-Funcao da camada:
+Layer function:
 
-- extrair conceitos do prompt;
-- identificar relacoes semanticas;
-- inferir dominio;
-- enriquecer conceitos com contexto de aplicacao;
-- evitar uso incompatível de conceitos canonicos;
-- preparar material semantico para L2.
+- extract concepts from the prompt;
+- identify semantic relationships;
+- infer domain;
+- enrich concepts with application context;
+- prevent incompatible use of canonical concepts;
+- prepare semantic material for L2.
 
-### L2 - Juizos Kantianos
+### L2 - Kantian Judgments
 
-Arquivo principal: [l2_kantian_judgments.py](l2_kantian_judgments.py)
+Main file: [l2_kantian_judgments.py](l2_kantian_judgments.py)
 
-Ferramentas principais:
+Main tools:
 
-- `KantianJudgment`: representa uma proposicao refinada com quantidade, qualidade, relacao, modalidade, prioridade e classificacao epistemica.
-- `SyntaxProfile`: perfil sintatico minimo do prompt.
-- `BERTAssertionClassifier`: classificador opcional baseado em `transformers.pipeline` para T/I/F.
-- `KantianJudgmentEngine`: motor que transforma conceitos em juizos priorizados.
+- `KantianJudgment`: represents a refined proposition with quantity, quality, relation, modality, priority, and epistemic classification.
+- `SyntaxProfile`: minimal syntactic profile of the prompt.
+- `BERTAssertionClassifier`: optional classifier based on `transformers.pipeline` for T/I/F.
+- `KantianJudgmentEngine`: engine that transforms concepts into prioritised judgments.
 
-Funcao da camada:
+Layer function:
 
-- converter conceitos em proposicoes;
-- classificar as proposicoes pela tabua kantiana;
-- gerar variacoes afirmativas, negativas, hipoteticas e apoditicas;
-- atribuir prioridade epistemologica;
-- fornecer hipoteses para os filtros cientificos e para L3.
+- convert concepts into propositions;
+- classify propositions by the Kantian table of judgments;
+- generate affirmative, negative, hypothetical, and apodictic variations;
+- assign epistemological priority;
+- supply hypotheses to the scientific filters and to L3.
 
-### Etapa Intermediaria - Silogismo, Hempel e Popper
+### Intermediate Step - Syllogism, Hempel, and Popper
 
-Arquivo principal: [syllogism_module.py](syllogism_module.py)
+Main file: [syllogism_module.py](syllogism_module.py)
 
-Ferramentas principais:
+Main tools:
 
-- `Syllogism`: estrutura de premissas e conclusao.
-- `AristotelianSyllogismValidator`: valida relacoes silogisticas.
-- `HempelFilter`: remove hipoteses espurias por baixa relacao semantica.
-- `PopperFalsifiability`: avalia falsificabilidade.
-- `ScientificSyllogismPipeline`: integra as tres rotinas antes de L3.
+- `Syllogism`: premises-and-conclusion structure.
+- `AristotelianSyllogismValidator`: validates syllogistic relations.
+- `HempelFilter`: removes spurious hypotheses due to low semantic relevance.
+- `PopperFalsifiability`: evaluates falsifiability.
+- `ScientificSyllogismPipeline`: integrates the three routines before L3.
 
-Funcao da etapa:
+Step function:
 
-- filtrar hipoteses muito soltas;
-- preservar proposicoes mais testaveis;
-- reduzir ruido antes do calculo paraconsistente.
+- filter overly loose hypotheses;
+- preserve more testable propositions;
+- reduce noise before the paraconsistent computation.
 
-### L3 - Logica Paraconsistente
+### L3 - Paraconsistent Logic
 
-Arquivos principais:
+Main files:
 
 - [l3_paraconsistent.py](l3_paraconsistent.py)
 - [paraconsistent_rules.py](paraconsistent_rules.py)
 - [neural_truth_model.py](neural_truth_model.py)
 
-Ferramentas principais:
+Main tools:
 
-- `ParaconsistentValue`: valor logico com `mu`, `lambda`, certeza, contradicao, estado, valor-verdade e metadados do ensemble.
-- `ManyValuedRouter`: roteia pares de proposicoes para contradicao real, incerteza estatistica, ambiguidade ou nao classificado.
-- `ParaconsistentEngine`: calcula anotacoes fuzzy e estados logicos.
-- `ParaconsistentRules`: regras de 12 estados derivadas de `data/Fuzzy.txt`.
-- `TruthScoringModel`: modelo neural baseado em Transformer para estado paraconsistente e valor-verdade.
-- `neural_annotations`: converte a saida neural em `mu/lambda`.
+- `ParaconsistentValue`: logical value with `mu`, `lambda`, certainty, contradiction, state, truth-value, and ensemble metadata.
+- `ManyValuedRouter`: routes proposition pairs to real contradiction, statistical uncertainty, ambiguity, or unclassified.
+- `ParaconsistentEngine`: computes fuzzy annotations and logical states.
+- `ParaconsistentRules`: 12-state rules derived from `data/Fuzzy.txt`.
+- `TruthScoringModel`: Transformer-based neural model for paraconsistent state and truth-value.
+- `neural_annotations`: converts neural output to `mu/lambda`.
 
-Funcao da camada:
+Layer function:
 
-- calcular `mu` como evidencia favoravel;
-- calcular `lambda` como evidencia contraria;
-- derivar certeza `Gc = mu - lambda`;
-- derivar contradicao `Gct = mu + lambda - 1`;
-- classificar o estado logico;
-- combinar heuristica e modelo neural por Weighted Dynamic Ensemble.
+- compute `mu` as supporting evidence;
+- compute `lambda` as opposing evidence;
+- derive certainty `Gc = mu - lambda`;
+- derive contradiction `Gct = mu + lambda - 1`;
+- classify the logical state;
+- combine heuristic and neural model via Weighted Dynamic Ensemble.
 
-### Weighted Dynamic Ensemble em L3
+### Weighted Dynamic Ensemble in L3
 
-A L3 combina duas fontes:
+L3 combines two sources:
 
-- heuristica baseada em KB, prioridade L2 e contradicoes locais;
-- anotacao neural do `TruthScoringModel`, quando disponivel.
+- heuristic based on KB, L2 priority, and local contradictions;
+- neural annotation from `TruthScoringModel`, when available.
 
-O fluxo e:
+The flow is:
 
-1. calcula `h_mu/h_lam` pela heuristica;
-2. calcula `n_mu/n_lam` pelo modelo neural;
-3. mede concordancia fuzzy entre as duas fontes;
-4. define pesos dinamicos:
+1. compute `h_mu/h_lam` from the heuristic;
+2. compute `n_mu/n_lam` from the neural model;
+3. measure fuzzy agreement between the two sources;
+4. set dynamic weights:
    - `heuristic_weight = 0.65 + 0.25 * agreement`
    - `neural_weight = 1.0 - heuristic_weight`
-5. combina `mu/lambda`;
-6. aplica regularizacao paraconsistente em `Gc/Gct`;
-7. registra `confidence`, `ensemble_agreement`, `neural_state` e `neural_truth`.
+5. combine `mu/lambda`;
+6. apply paraconsistent regularisation to `Gc/Gct`;
+7. record `confidence`, `ensemble_agreement`, `neural_state`, and `neural_truth`.
 
-Quando o modelo neural nao esta disponivel, a camada continua funcionando em modo heuristico, com `heuristic_weight=1.0` e `neural_weight=0.0`.
+When the neural model is unavailable, the layer continues operating in heuristic mode, with `heuristic_weight=1.0` and `neural_weight=0.0`.
 
-### L4 - Sintese Russelliana + CoVe
+### L4 - Russellian Synthesis + CoVe
 
-Arquivos principais:
+Main files:
 
 - [l4_synthesis.py](l4_synthesis.py)
 - [l4_russell_equivalence.py](l4_russell_equivalence.py)
 - [l4_chain_verification.py](l4_chain_verification.py)
 
-Ferramentas principais:
+Main tools:
 
-- `SynthesisResult`: resultado estruturado da sintese.
-- `RussellianSynthesisEngine`: combina proposicoes L3 com prioridades L2 e KB.
-- `RussellConceptBase`: base conceitual extraida de `data/russell.txt`.
-- `score_proposition_by_concepts`: calcula correspondencia conceitual proposicao-fato.
-- `ChainOfVerificationAgent`: aplica Chain of Verification no resultado.
+- `SynthesisResult`: structured synthesis result.
+- `RussellianSynthesisEngine`: combines L3 propositions with L2 priorities and KB.
+- `RussellConceptBase`: conceptual base extracted from `data/russell.txt`.
+- `score_proposition_by_concepts`: computes proposition-to-fact conceptual correspondence.
+- `ChainOfVerificationAgent`: applies Chain of Verification to the result.
 
-Funcao da camada:
+Layer function:
 
-- selecionar e ponderar a melhor hipotese;
-- calcular sintese baseada em valor-verdade, prioridade e correspondencia;
-- verificar a resposta por CoVe;
-- produzir resposta estruturada antes da geracao textual.
+- select and weight the best hypothesis;
+- compute synthesis based on truth-value, priority, and correspondence;
+- verify the response via CoVe;
+- produce a structured response before text generation.
 
-### L5 - Geracao Textual
+### L5 - Text Generation
 
-Arquivo principal: [l5_generation.py](l5_generation.py)
+Main file: [l5_generation.py](l5_generation.py)
 
-Ferramentas principais:
+Main tools:
 
-- `build_context_for_generation`: monta o contexto L1-L4 para o provider.
-- `generate_with_ollama_l5`: gera texto com Ollama.
-- `generate_with_custom_lm`: usa o modelo customizado local.
-- `generate_response`: roteia a geracao para Ollama, provider remoto, custom LM ou fallback template.
+- `build_context_for_generation`: assembles the L1–L4 context for the provider.
+- `generate_with_ollama_l5`: generates text with Ollama.
+- `generate_with_custom_lm`: uses the local custom model.
+- `generate_response`: routes generation to Ollama, remote provider, custom LM, or fallback template.
 
-Funcao da camada:
+Layer function:
 
-- transformar a sintese L4 em linguagem natural;
-- preservar contexto epistemologico;
-- usar provider configurado sem perder o fallback local.
+- transform the L4 synthesis into natural language;
+- preserve epistemological context;
+- use the configured provider without losing the local fallback.
 
-### L6 - Refinamento Final
+### L6 - Final Refinement
 
-Arquivo principal: [l6_final_response.py](l6_final_response.py)
+Main file: [l6_final_response.py](l6_final_response.py)
 
-Ferramentas principais:
+Main tools:
 
-- `EpistemicContext`: contexto agregado com estados L3, rotas paraconsistentes e classificacoes BERT.
-- `FinalResponseEngine`: gera e reescreve a resposta fluida.
+- `EpistemicContext`: aggregated context with L3 states, paraconsistent routes, and BERT classifications.
+- `FinalResponseEngine`: generates and rewrites the fluent response.
 
-Funcao da camada:
+Layer function:
 
-- melhorar clareza e coesao;
-- ajustar tom ao grau de confianca;
-- mencionar incertezas e contradicoes quando necessario;
-- preservar os dados epistemicos.
+- improve clarity and cohesion;
+- adjust tone to the confidence level;
+- mention uncertainties and contradictions when necessary;
+- preserve the epistemic data.
 
-### L7 - Texto Final Definitivo
+### L7 - Definitive Final Text
 
-Arquivos principais:
+Main files:
 
 - [l7_final_text.py](l7_final_text.py)
 - [agente_sintese_final.py](agente_sintese_final.py)
 
-Ferramentas principais:
+Main tools:
 
-- `FinalTextEngine`: cria o prompt final e chama provider/template.
-- `synthesize_final_text`: agente de sintese final reutilizavel via CLI ou pipeline.
+- `FinalTextEngine`: builds the final prompt and calls provider/template.
+- `synthesize_final_text`: reusable final synthesis agent via CLI or pipeline.
 
-Funcao da camada:
+Layer function:
 
-- integrar L1-L6 em um texto final;
-- classificar audiencia (`leigo`, `tecnico`, `academico`);
-- ajustar tom conforme confianca, contradicao e estado;
-- usar o rastro CoT auditavel como contexto de sintese.
+- integrate L1–L6 into a final text;
+- classify audience (`layperson`, `technical`, `academic`);
+- adjust tone according to confidence, contradiction, and state;
+- use the auditable CoT trace as synthesis context.
 
-## Chain of Thought Auditavel
+## Auditable Chain of Thought
 
-Arquivos principais:
+Main files:
 
 - [cot_hierarchical.py](cot_hierarchical.py)
 - [prompt_engineering.py](prompt_engineering.py)
 
-Ferramentas principais:
+Main tools:
 
-- `CoTStep`: registra camada, titulo, resumo do raciocinio, decisoes-chave, saida e duracao.
-- `HierarchicalCoTTrace`: agrega os passos L1-L7 e exporta `dict` ou Markdown.
-- `HierarchicalCoTOrchestrator`: wrapper para executar o pipeline com retorno de trace.
-- `get_layer_prompt`: gera prompts especificos para L1-L7.
+- `CoTStep`: records layer, title, reasoning summary, key decisions, output, and duration.
+- `HierarchicalCoTTrace`: aggregates steps L1–L7 and exports as `dict` or Markdown.
+- `HierarchicalCoTOrchestrator`: wrapper to run the pipeline with trace return.
+- `get_layer_prompt`: generates layer-specific prompts for L1–L7.
 
-Funcao:
+Function:
 
-- gerar uma trilha de auditoria por camada;
-- registrar decisoes e resumos sem expor raciocinio interno bruto;
-- permitir `return_cot=True` no pipeline.
+- generate a per-layer audit trail;
+- record decisions and summaries without exposing raw internal reasoning;
+- enable `return_cot=True` in the pipeline.
 
-Uso:
+Usage:
 
 ```python
 from pipeline import HybridLLMPipeline
 
 pipeline = HybridLLMPipeline(verbose=False)
-result = pipeline.process("O que e conhecimento?", return_cot=True)
+result = pipeline.process("What is knowledge?", return_cot=True)
 
 print(result.response)
 print(result.cot_markdown)
 ```
 
-## Providers de LLM
+## LLM Providers
 
-Arquivo principal: [llm_provider_client.py](llm_provider_client.py)
+Main file: [llm_provider_client.py](llm_provider_client.py)
 
-Providers suportados:
+Supported providers:
 
 - `ollama`
 - `openai`
@@ -277,95 +277,95 @@ Providers suportados:
 - `template`
 - `custom_lm`
 
-Funcoes:
+Functions:
 
-- normalizar providers;
-- definir modelos padrao;
-- gerar texto local com Ollama;
-- chamar APIs remotas via `requests`;
-- extrair texto de formatos OpenAI-like, Anthropic e Gemini;
-- fornecer fallback quando provider nao esta configurado.
+- normalise providers;
+- set default models;
+- generate text locally with Ollama;
+- call remote APIs via `requests`;
+- extract text from OpenAI-like, Anthropic, and Gemini formats;
+- provide fallback when no provider is configured.
 
-## RAG, KB e Busca
+## RAG, KB, and Search
 
 ### Knowledge Base
 
-Arquivo principal: [knowledge_base.py](knowledge_base.py)
+Main file: [knowledge_base.py](knowledge_base.py)
 
-Ferramentas:
+Tools:
 
-- `SEED_KNOWLEDGE_BASE`: base minima de fallback.
-- `load_kb_from_file`: carrega JSON, JSONL/NDJSON ou documentos.
-- `merge_kb`: mescla bases.
-- `enrich_kb_from_chroma`: enriquece KB via ChromaDB.
-- `get_domain_knowledge_base`: recupera KB por dominio.
-- `get_knowledge_base`: ponto de entrada geral da KB.
+- `SEED_KNOWLEDGE_BASE`: minimal fallback base.
+- `load_kb_from_file`: loads JSON, JSONL/NDJSON, or documents.
+- `merge_kb`: merges bases.
+- `enrich_kb_from_chroma`: enriches KB via ChromaDB.
+- `get_domain_knowledge_base`: retrieves KB by domain.
+- `get_knowledge_base`: general KB entry point.
 
-Funcao:
+Function:
 
-- fornecer termos e pesos para L1, L3 e L4;
-- permitir KB generica, por dominio e enriquecida por RAG.
+- supply terms and weights to L1, L3, and L4;
+- allow generic, domain-specific, and RAG-enriched KB.
 
-### RAG Hibrido
+### Hybrid RAG
 
-Arquivos principais:
+Main files:
 
 - [rag_hybrid_context_injection.py](rag_hybrid_context_injection.py)
 - [l1_l2_rag_integration.py](l1_l2_rag_integration.py)
 - [pipeline_with_rag_integration.py](pipeline_with_rag_integration.py)
 
-Ferramentas:
+Tools:
 
 - `RetrievalStrategy`: `direct_injection`, `semantic_retrieval`, `hybrid`, `domain_aware`.
-- `DomainContext`: configura dominio, KB, Chroma, prompt e pesos.
-- `RetrievedDocument`: documento recuperado.
-- `RAGContext`: contexto compilado.
-- `HybridRAGContextInjectionEngine`: motor de retrieval + injection.
-- `IntegratedL1L2RAGPipeline`: integra RAG com L1 e L2.
-- `HybridLLMPipelineWithRAG`: pipeline alternativa com RAG embutido.
+- `DomainContext`: configures domain, KB, Chroma, prompt, and weights.
+- `RetrievedDocument`: retrieved document.
+- `RAGContext`: compiled context.
+- `HybridRAGContextInjectionEngine`: retrieval + injection engine.
+- `IntegratedL1L2RAGPipeline`: integrates RAG with L1 and L2.
+- `HybridLLMPipelineWithRAG`: alternative pipeline with embedded RAG.
 
-Funcao:
+Function:
 
-- detectar dominio;
-- injetar contexto direto de KB;
-- recuperar documentos em ChromaDB;
-- compilar contexto para L1/L2 e resposta final.
+- detect domain;
+- inject context directly from KB;
+- retrieve documents from ChromaDB;
+- compile context for L1/L2 and the final response.
 
-### Agente de Busca
+### Search Agent
 
-Arquivo principal: [agente_busca_web.py](agente_busca_web.py)
+Main file: [agente_busca_web.py](agente_busca_web.py)
 
-Ferramentas:
+Tools:
 
-- `get_retriever_tool`: ferramenta de busca local em ChromaDB.
-- `get_duckduckgo_tool`: ferramenta DuckDuckGo quando instalada.
-- `build_agent`: monta agente ReAct via LangChain.
-- `run_search_for_context`: retorna contexto textual para o pipeline.
+- `get_retriever_tool`: local ChromaDB search tool.
+- `get_duckduckgo_tool`: DuckDuckGo tool when installed.
+- `build_agent`: builds a ReAct agent via LangChain.
+- `run_search_for_context`: returns textual context for the pipeline.
 
-Funcao:
+Function:
 
-- buscar contexto local e/ou web;
-- enriquecer respostas quando a L3 indica incerteza, indeterminacao ou fallback heuristico.
+- search local and/or web context;
+- enrich responses when L3 indicates uncertainty, indetermination, or heuristic fallback.
 
 ## Interfaces
 
 ### CLI
 
-Arquivo principal: [pipeline.py](pipeline.py)
+Main file: [pipeline.py](pipeline.py)
 
-Comandos:
+Commands:
 
 ```bash
 python pipeline.py --demo
-python pipeline.py --prompt "Explique logica paraconsistente em 5 linhas"
+python pipeline.py --prompt "Explain paraconsistent logic in 5 lines"
 python pipeline.py --repl
 ```
 
-### API REST
+### REST API
 
-Arquivo principal: [api.py](api.py)
+Main file: [api.py](api.py)
 
-Tecnologias:
+Technologies:
 
 - FastAPI
 - Pydantic
@@ -373,96 +373,96 @@ Tecnologias:
 
 Endpoints:
 
-- `GET /health`: status da API.
-- `POST /process`: processa prompt unico.
-- `POST /chat`: processa mensagem com sessao.
-- `POST /agent`: executa apenas o agente de busca.
+- `GET /health`: API status.
+- `POST /process`: processes a single prompt.
+- `POST /chat`: processes a message with session.
+- `POST /agent`: runs only the search agent.
 
 ### Chainlit
 
-Arquivo principal: [app.py](app.py)
+Main file: [app.py](app.py)
 
-Tecnologias:
+Technologies:
 
 - Chainlit
 - Ollama
 
-Funcao:
+Function:
 
-- interface simples de chat;
+- simple chat interface;
 - streaming via `ollama.chat`;
-- historico basico em memoria.
+- basic in-memory history.
 
 ### Standalone
 
-Arquivo principal: [doninha_standalone.py](doninha_standalone.py)
+Main file: [doninha_standalone.py](doninha_standalone.py)
 
-Funcao:
+Function:
 
-- arquivo consolidado com a maior parte dos modulos embutidos;
-- util para distribuicao ou execucao sem separar muitos arquivos;
-- inclui suporte ao trace CoT L1-L7 e ao Weighted Dynamic Ensemble.
+- consolidated file with most modules embedded;
+- useful for distribution or execution without separating multiple files;
+- includes support for the CoT trace L1–L7 and the Weighted Dynamic Ensemble.
 
-## Treinamento e Modelos
+## Training and Models
 
 ### TruthScoringModel
 
-Arquivos:
+Files:
 
 - [neural_truth_model.py](neural_truth_model.py)
 - [train_truth_model.py](train_truth_model.py)
 
-Ferramentas:
+Tools:
 
 - PyTorch
 - Transformers (`AutoModel`, `AutoTokenizer`)
-- Dataset customizado de proposicoes
-- Regras de `data/Fuzzy.txt`
+- Custom proposition dataset
+- Rules from `data/Fuzzy.txt`
 
-Funcao:
+Function:
 
-- treinar um classificador/regressor para estado paraconsistente e valor-verdade;
-- gerar `truth_scoring_model.pt`;
-- alimentar a L3 neural.
+- train a classifier/regressor for paraconsistent state and truth-value;
+- generate `truth_scoring_model.pt`;
+- feed the neural L3.
 
-### Modelo de Linguagem Customizado
+### Custom Language Model
 
-Arquivos:
+Files:
 
 - [custom_tokenizer.py](custom_tokenizer.py)
 - [custom_lm_model.py](custom_lm_model.py)
 - [pretrain_custom_lm.py](pretrain_custom_lm.py)
 - [run_pretrain.py](run_pretrain.py)
 
-Ferramentas:
+Tools:
 
 - SentencePiece
 - PyTorch
-- Transformer customizado
-- Corpus filosofico local
+- Custom Transformer
+- Local philosophical corpus
 
-Funcao:
+Function:
 
-- treinar tokenizer proprio;
-- treinar LM pequeno local;
-- permitir provider `custom_lm`.
+- train a custom tokenizer;
+- train a small local LM;
+- enable the `custom_lm` provider.
 
-### Base Russelliana
+### Russellian Base
 
-Arquivos:
+Files:
 
 - [l4_russell_equivalence.py](l4_russell_equivalence.py)
 - [train_l4_russell.py](train_l4_russell.py)
 
-Funcao:
+Function:
 
-- extrair conceitos de equivalencia/correspondencia de `data/russell.txt`;
-- gerar `l4_russell_concepts.json`;
-- ponderar L4 por correspondencia conceitual.
+- extract equivalence/correspondence concepts from `data/russell.txt`;
+- generate `l4_russell_concepts.json`;
+- weight L4 by conceptual correspondence.
 
-## Metricas e Avaliacao
+## Metrics and Evaluation
 
-Arquivos principais:
+Main files:
 
 - [metrics.py](metrics.py)
 - [eval_pipeline.py](eval_pipeline.py)
@@ -472,34 +472,34 @@ Arquivos principais:
 - [test_citation_behavior.py](test_citation_behavior.py)
 - [test_rag_hybrid.py](test_rag_hybrid.py)
 
-Ferramentas:
+Tools:
 
-- `coherence_l3`: mede coerencia entre verdade, estado e contradicao.
-- BLEU simples.
-- ROUGE-L simples.
-- similaridade semantica via SentenceTransformers.
-- suites de testes para L2, L7, providers, citacao e RAG.
+- `coherence_l3`: measures coherence between truth, state, and contradiction.
+- Simple BLEU.
+- Simple ROUGE-L.
+- Semantic similarity via SentenceTransformers.
+- Test suites for L2, L7, providers, citation, and RAG.
 
-## Configuracao
+## Configuration
 
-Arquivos:
+Files:
 
 - [config.yaml](config.yaml)
 - [config_loader.py](config_loader.py)
 - [config_rag.yaml](config_rag.yaml)
 
-`config_loader.py` resolve:
+`config_loader.py` resolves:
 
-- paths relativos;
+- relative paths;
 - providers;
-- modelos;
-- KB e Chroma;
-- configuracao de agente;
+- models;
+- KB and Chroma;
+- agent configuration;
 - API;
 - chat;
 - L1 spaCy.
 
-Exemplo:
+Example:
 
 ```yaml
 generation:
@@ -516,7 +516,7 @@ l7:
   model: "doninha8:latest"
 ```
 
-Variaveis uteis:
+Useful variables:
 
 - `OLLAMA_MODEL`
 - `OLLAMA_HOST`
@@ -531,206 +531,206 @@ Variaveis uteis:
 - `META_API_KEY`
 - `VECTOR_DB_PATH`
 
-## Ferramentas do Middleware IA Doninha
+## Doninha IA Middleware Tools
 
-### Ferramentas internas de raciocinio
+### Internal reasoning tools
 
-| Ferramenta | Arquivo | Funcao |
+| Tool | File | Function |
 |---|---|---|
-| `ConceptTable` | `l1_concept_table.py` | Extrai conceitos e relacoes semanticas. |
-| `LogicLMSymbolicSolver` | `l1_concept_table.py` | Enriquece conceitos com contexto e valida compatibilidade canonica. |
-| `KantianJudgmentEngine` | `l2_kantian_judgments.py` | Gera juizos kantianos priorizados. |
-| `BERTAssertionClassifier` | `l2_kantian_judgments.py` | Classifica proposicoes assertricas em verdade, indeterminacao e falsidade. |
-| `ScientificSyllogismPipeline` | `syllogism_module.py` | Aplica silogismo, filtro de Hempel e falsificabilidade popperiana. |
-| `ParaconsistentEngine` | `l3_paraconsistent.py` | Calcula `mu/lambda`, estado, verdade, certeza e contradicao. |
-| `ManyValuedRouter` | `l3_paraconsistent.py` | Classifica pares de proposicoes como contradicao, incerteza ou ambiguidade. |
-| `ParaconsistentRules` | `paraconsistent_rules.py` | Implementa regras fuzzy de 12 estados. |
-| `TruthScoringModel` | `neural_truth_model.py` | Modelo neural para scoring paraconsistente. |
-| `RussellianSynthesisEngine` | `l4_synthesis.py` | Sintetiza proposicoes por equivalencia/correspondencia. |
-| `ChainOfVerificationAgent` | `l4_chain_verification.py` | Verifica e revisa a resposta por CoVe. |
-| `FinalResponseEngine` | `l6_final_response.py` | Refina a resposta final e monta contexto epistemico. |
-| `FinalTextEngine` | `l7_final_text.py` | Produz o texto final definitivo. |
-| `HierarchicalCoTTrace` | `cot_hierarchical.py` | Registra Chain of Thought auditavel L1-L7. |
-| `get_layer_prompt` | `prompt_engineering.py` | Gera prompts especificos por camada. |
+| `ConceptTable` | `l1_concept_table.py` | Extracts concepts and semantic relations. |
+| `LogicLMSymbolicSolver` | `l1_concept_table.py` | Enriches concepts with context and validates canonical compatibility. |
+| `KantianJudgmentEngine` | `l2_kantian_judgments.py` | Generates prioritised Kantian judgments. |
+| `BERTAssertionClassifier` | `l2_kantian_judgments.py` | Classifies assertoric propositions as true, indeterminate, or false. |
+| `ScientificSyllogismPipeline` | `syllogism_module.py` | Applies syllogism, Hempel filter, and Popperian falsifiability. |
+| `ParaconsistentEngine` | `l3_paraconsistent.py` | Computes `mu/lambda`, state, truth, certainty, and contradiction. |
+| `ManyValuedRouter` | `l3_paraconsistent.py` | Classifies proposition pairs as contradiction, uncertainty, or ambiguity. |
+| `ParaconsistentRules` | `paraconsistent_rules.py` | Implements 12-state fuzzy rules. |
+| `TruthScoringModel` | `neural_truth_model.py` | Neural model for paraconsistent scoring. |
+| `RussellianSynthesisEngine` | `l4_synthesis.py` | Synthesises propositions by equivalence/correspondence. |
+| `ChainOfVerificationAgent` | `l4_chain_verification.py` | Verifies and revises the response via CoVe. |
+| `FinalResponseEngine` | `l6_final_response.py` | Refines the final response and builds the epistemic context. |
+| `FinalTextEngine` | `l7_final_text.py` | Produces the definitive final text. |
+| `HierarchicalCoTTrace` | `cot_hierarchical.py` | Records the auditable Chain of Thought for L1–L7. |
+| `get_layer_prompt` | `prompt_engineering.py` | Generates layer-specific prompts. |
 
-### Ferramentas de contexto, busca e RAG
+### Context, search, and RAG tools
 
-| Ferramenta | Arquivo | Funcao |
+| Tool | File | Function |
 |---|---|---|
-| `get_knowledge_base` | `knowledge_base.py` | Carrega KB geral ou por dominio. |
-| `enrich_kb_from_chroma` | `knowledge_base.py` | Enriquece KB com trechos ChromaDB. |
-| `HybridRAGContextInjectionEngine` | `rag_hybrid_context_injection.py` | Combina injeção direta e retrieval semantico. |
-| `IntegratedL1L2RAGPipeline` | `l1_l2_rag_integration.py` | Usa RAG para enriquecer L1/L2. |
-| `run_search_for_context` | `agente_busca_web.py` | Executa busca local/web e retorna contexto. |
-| `DuckDuckGoSearchRun` | `agente_busca_web.py` | Busca web via DuckDuckGo quando disponivel. |
-| `Chroma` | varios | Base vetorial local para retrieval. |
-| `HuggingFaceEmbeddings` | varios | Embeddings para ChromaDB. |
+| `get_knowledge_base` | `knowledge_base.py` | Loads general or domain-specific KB. |
+| `enrich_kb_from_chroma` | `knowledge_base.py` | Enriches KB with ChromaDB excerpts. |
+| `HybridRAGContextInjectionEngine` | `rag_hybrid_context_injection.py` | Combines direct injection and semantic retrieval. |
+| `IntegratedL1L2RAGPipeline` | `l1_l2_rag_integration.py` | Uses RAG to enrich L1/L2. |
+| `run_search_for_context` | `agente_busca_web.py` | Runs local/web search and returns context. |
+| `DuckDuckGoSearchRun` | `agente_busca_web.py` | Web search via DuckDuckGo when available. |
+| `Chroma` | various | Local vector base for retrieval. |
+| `HuggingFaceEmbeddings` | various | Embeddings for ChromaDB. |
 
-### Ferramentas de geracao
+### Generation tools
 
-| Ferramenta | Arquivo | Funcao |
+| Tool | File | Function |
 |---|---|---|
-| `generate_text` | `llm_provider_client.py` | Roteia chamadas para providers locais/remotos. |
-| Ollama | `llm_provider_client.py`, `l5_generation.py`, `l7_final_text.py` | Provider local padrao. |
-| OpenAI | `llm_provider_client.py` | Provider remoto OpenAI-compatible. |
-| Anthropic | `llm_provider_client.py` | Provider remoto Claude. |
-| Gemini | `llm_provider_client.py` | Provider remoto Google Gemini. |
-| Grok | `llm_provider_client.py` | Provider remoto xAI. |
-| Groq | `llm_provider_client.py` | Provider remoto OpenAI-compatible da Groq. |
-| Meta/Llama API | `llm_provider_client.py` | Provider remoto para modelos Llama. |
-| `custom_lm` | `custom_lm_model.py` | Modelo local customizado treinavel. |
-| `template` | varios | Fallback sem chamada externa. |
+| `generate_text` | `llm_provider_client.py` | Routes calls to local/remote providers. |
+| Ollama | `llm_provider_client.py`, `l5_generation.py`, `l7_final_text.py` | Default local provider. |
+| OpenAI | `llm_provider_client.py` | OpenAI-compatible remote provider. |
+| Anthropic | `llm_provider_client.py` | Remote Claude provider. |
+| Gemini | `llm_provider_client.py` | Remote Google Gemini provider. |
+| Grok | `llm_provider_client.py` | Remote xAI provider. |
+| Groq | `llm_provider_client.py` | Groq OpenAI-compatible remote provider. |
+| Meta/Llama API | `llm_provider_client.py` | Remote provider for Llama models. |
+| `custom_lm` | `custom_lm_model.py` | Trainable local custom model. |
+| `template` | various | Fallback with no external call. |
 
-### Ferramentas de treinamento e dados
+### Training and data tools
 
-| Ferramenta | Arquivo | Funcao |
+| Tool | File | Function |
 |---|---|---|
-| `train_truth_model.py` | treinamento L3 | Treina o `TruthScoringModel`. |
-| `train_l4_russell.py` | treinamento L4 | Gera base de conceitos russellianos. |
-| `pretrain_custom_lm.py` | LM customizado | Treina modelo de linguagem proprio. |
-| `custom_tokenizer.py` | tokenizacao | Treina/carrega SentencePiece. |
-| `corpus_utils.py` | corpus | Leitura e preparacao de corpus. |
-| `build_concepts_from_english_dict.py` | conceitos | Extrai conceitos de dicionario em ingles. |
-| `philosophy-corpus/encode_corpus.py` | corpus | Codifica corpus para treino. |
+| `train_truth_model.py` | L3 training | Trains the `TruthScoringModel`. |
+| `train_l4_russell.py` | L4 training | Generates the Russellian concept base. |
+| `pretrain_custom_lm.py` | Custom LM | Trains a custom language model. |
+| `custom_tokenizer.py` | tokenisation | Trains/loads SentencePiece. |
+| `corpus_utils.py` | corpus | Reads and prepares corpus. |
+| `build_concepts_from_english_dict.py` | concepts | Extracts concepts from an English dictionary. |
+| `philosophy-corpus/encode_corpus.py` | corpus | Encodes corpus for training. |
 
-### Ferramentas de interface e operacao
+### Interface and operation tools
 
-| Ferramenta | Arquivo | Funcao |
+| Tool | File | Function |
 |---|---|---|
-| `HybridLLMPipeline` | `pipeline.py` | Orquestra L1-L7. |
-| `HybridLLMPipelineWithRAG` | `pipeline_with_rag_integration.py` | Variante com RAG hibrido. |
-| FastAPI | `api.py` | API HTTP. |
-| Chainlit | `app.py` | Interface de chat local. |
-| `ChatSession` | `chat_session.py` | Historico de conversa. |
-| `doninha_standalone.py` | standalone | Distribuicao consolidada. |
-| scripts `consolidate_*` | varios | Geram arquivos consolidados. |
+| `HybridLLMPipeline` | `pipeline.py` | Orchestrates L1–L7. |
+| `HybridLLMPipelineWithRAG` | `pipeline_with_rag_integration.py` | Variant with embedded hybrid RAG. |
+| FastAPI | `api.py` | HTTP API. |
+| Chainlit | `app.py` | Local chat interface. |
+| `ChatSession` | `chat_session.py` | Conversation history. |
+| `doninha_standalone.py` | standalone | Consolidated distribution. |
+| `consolidate_*` scripts | various | Generate consolidated files. |
 
-## Como Executar
+## How to Run
 
-Instalar dependencias:
+Install dependencies:
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-Rodar Ollama:
+Start Ollama:
 
 ```bash
 ollama serve
 ollama pull doninha8:latest
 ```
 
-Executar pipeline:
+Run the pipeline:
 
 ```bash
-python pipeline.py --prompt "Explique logica paraconsistente em 5 linhas"
+python pipeline.py --prompt "Explain paraconsistent logic in 5 lines"
 python pipeline.py --demo
 python pipeline.py --repl
 ```
 
-Executar API:
+Run the API:
 
 ```bash
 python api.py
 ```
 
-Executar Chainlit:
+Run Chainlit:
 
 ```bash
 chainlit run app.py
 ```
 
-Executar RAG hibrido:
+Run hybrid RAG:
 
 ```bash
 python pipeline_with_rag_integration.py
 python example_rag_hybrid_usage.py
 ```
 
-Treinar L3 neural:
+Train neural L3:
 
 ```bash
 python train_truth_model.py
 ```
 
-Treinar base L4 Russell:
+Train the L4 Russell base:
 
 ```bash
 python train_l4_russell.py
 ```
 
-Treinar LM customizado:
+Train the custom LM:
 
 ```bash
 python run_pretrain.py
 ```
 
-## Auditoria da Saida
+## Output Auditing
 
-O pipeline adiciona blocos de auditoria como:
+The pipeline appends audit blocks such as:
 
 - `[AUDIT L4]`
 - `[AUDIT L5]`
 - `[AUDIT L6]`
 - `[AUDIT L7]`
 
-Eles podem incluir:
+These may include:
 
-- provider usado;
-- modelo usado;
-- valor-verdade;
-- certeza;
-- contradicao;
-- estado logico;
-- fontes locais/canonicas;
-- resumo L2;
-- resumo L3;
-- pesos do ensemble L3.
+- provider used;
+- model used;
+- truth-value;
+- certainty;
+- contradiction;
+- logical state;
+- local/canonical sources;
+- L2 summary;
+- L3 summary;
+- L3 ensemble weights.
 
-Com `return_cot=True`, o resultado tambem recebe:
+With `return_cot=True`, the result also includes:
 
 - `result.cot_trace`
 - `result.cot_markdown`
 
-## Estrutura de Arquivos
+## File Structure
 
 ```text
-pipeline.py                     Orquestrador principal L1-L7
-doninha_standalone.py            Versao consolidada
-api.py                           API FastAPI
-app.py                           Interface Chainlit/Ollama
-l1_concept_table.py              L1 - conceitos
-l2_kantian_judgments.py          L2 - juizos
-syllogism_module.py              Silogismo/Hempel/Popper
-l3_paraconsistent.py             L3 - paraconsistente
-paraconsistent_rules.py          Regras fuzzy
-neural_truth_model.py            Modelo neural de truth scoring
-l4_synthesis.py                  L4 - sintese
-l4_chain_verification.py         CoVe
-l4_russell_equivalence.py        Base Russelliana
-l5_generation.py                 L5 - geracao
-l6_final_response.py             L6 - refinamento
-l7_final_text.py                 L7 - texto final
-prompt_engineering.py            Prompts por camada
-cot_hierarchical.py              Trace CoT auditavel
-knowledge_base.py                KB
-rag_hybrid_context_injection.py  RAG hibrido
-llm_provider_client.py           Providers
+pipeline.py                     Main L1–L7 orchestrator
+doninha_standalone.py           Consolidated version
+api.py                          FastAPI API
+app.py                          Chainlit/Ollama interface
+l1_concept_table.py             L1 - concepts
+l2_kantian_judgments.py         L2 - judgments
+syllogism_module.py             Syllogism/Hempel/Popper
+l3_paraconsistent.py            L3 - paraconsistent
+paraconsistent_rules.py         Fuzzy rules
+neural_truth_model.py           Neural truth scoring model
+l4_synthesis.py                 L4 - synthesis
+l4_chain_verification.py        CoVe
+l4_russell_equivalence.py       Russellian base
+l5_generation.py                L5 - generation
+l6_final_response.py            L6 - refinement
+l7_final_text.py                L7 - final text
+prompt_engineering.py           Per-layer prompts
+cot_hierarchical.py             Auditable CoT trace
+knowledge_base.py               KB
+rag_hybrid_context_injection.py Hybrid RAG
+llm_provider_client.py          Providers
 ```
 
-## Observacoes Importantes
+## Important Notes
 
-- O Doninha funciona mesmo sem modelo neural L3, usando heuristica paraconsistente.
-- O provider `template` permite rodar partes do fluxo sem LLM externo.
-- O provider local recomendado e Ollama.
-- O RAG depende de ChromaDB e embeddings quando configurado.
-- O arquivo standalone e grande por conter muitos modulos consolidados.
-- Os arquivos em `data/` e `philosophy-corpus/` sao usados como corpus, KB e fontes de treinamento.
+- Doninha works even without a neural L3 model, using the paraconsistent heuristic.
+- The `template` provider allows parts of the flow to run without an external LLM.
+- The recommended local provider is Ollama.
+- RAG depends on ChromaDB and embeddings when configured.
+- The standalone file is large because it contains many consolidated modules.
+- Files in `data/` and `philosophy-corpus/` are used as corpus, KB, and training sources.
 
-## Referencia
+## Reference
 
-Daniel Fonseca - criador da Inteligencia Artificial Doninha, middleware que transforma LLMs em um modelo neuro-simbolico hibrido com ferramentas de auditoria.
+Daniel Fonseca — creator of Doninha AI, a middleware that transforms LLMs into a hybrid neuro-symbolic model with auditing tools.
 
-A fundamentacao teorica esta no artigo "Uma verdadeira Epistemologia para a Inteligencia Artificial".
+The theoretical foundation is presented in the article "A True Epistemology for Artificial Intelligence".
 
-Todos os direitos reservados a Daniel Barros Fonseca, sujeitos a licenciamento para uso de terceiros. A tecnologia IA Doninha encontra-se em processo corrente de registro de patente. Plagios ou apropriacoes indevidas desta tecnologia proprietaria estarao sujeitos a indenizacao, reparacao de danos, reparacao por lucros perdidos e obrigatoriedade de publicacao de carta de retratacao por espionagem industrial.
+All rights reserved to Daniel Barros Fonseca, subject to licensing for third-party use. Doninha IA technology is currently undergoing patent registration. Plagiarism or misappropriation of this proprietary technology will be subject to indemnification, damages, loss-of-profit recovery, and mandatory publication of a retraction letter for industrial espionage.
